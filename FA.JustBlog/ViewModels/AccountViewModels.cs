@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FA.JustBlog.Models
+namespace FA.JustBlog.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -79,6 +80,19 @@ namespace FA.JustBlog.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [StringLength(510, ErrorMessage = "The {0} must not exceed {2} characters.")]
+        public string Avatar { get; set; }
+
+        [StringLength(1024, ErrorMessage = "The {0} must not exceed {2} characters.")]
+        [Display(Name = "Introduction")]
+        public string Intro { get; set; }
+
+        [Display(Name = "Created Date")]
+        public DateTime CreatedDate { get; set; }
+
+        [Display(Name = "Modified Date")]
+        public DateTime ModifiedDate { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -1,6 +1,6 @@
 using Autofac;
 using Autofac.Integration.Mvc;
-using FA.JustBlog.AutoMapperConfig;
+using FA.JustBlog.ExternalConfig;
 using FA.JustBlog.Core.Data;
 using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Repositories;

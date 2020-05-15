@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FA.JustBlog.Models
+namespace FA.JustBlog.ViewModels
 {
     public class CategoryViewModel
     {

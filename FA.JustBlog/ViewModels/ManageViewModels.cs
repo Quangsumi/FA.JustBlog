@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace FA.JustBlog.Models
+namespace FA.JustBlog.ViewModels
 {
     public class IndexViewModel
     {

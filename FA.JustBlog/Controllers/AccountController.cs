@@ -8,7 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using FA.JustBlog.Models;
+using FA.JustBlog.ViewModels;
+using FA.JustBlog.Core.Models;
 
 namespace FA.JustBlog.Controllers
 {
@@ -151,7 +152,15 @@ namespace FA.JustBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User 
+                { 
+                    UserName = model.Email, 
+                    Email = model.Email,
+                    Avatar = model.Avatar,
+                    Intro = model.Intro,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -367,7 +376,7 @@ namespace FA.JustBlog.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

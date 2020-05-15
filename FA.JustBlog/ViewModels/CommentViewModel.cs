@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FA.JustBlog.Models
+namespace FA.JustBlog.ViewModels
 {
     public class CommentViewModel
     {

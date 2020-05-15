@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FA.JustBlog.Models
+namespace FA.JustBlog.ViewModels
 {
     public class PostViewModel
     {

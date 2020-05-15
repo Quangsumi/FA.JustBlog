@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using FA.JustBlog.Models;
+using FA.JustBlog.ViewModels;
 
 namespace FA.JustBlog.Controllers
 {

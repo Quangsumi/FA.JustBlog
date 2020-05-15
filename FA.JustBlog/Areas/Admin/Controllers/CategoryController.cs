@@ -1,7 +1,7 @@
-﻿using FA.JustBlog.AutoMapperConfig;
+﻿using FA.JustBlog.ExternalConfig;
 using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Services;
-using FA.JustBlog.Models;
+using FA.JustBlog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

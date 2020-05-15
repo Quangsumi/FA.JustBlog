@@ -1,4 +1,4 @@
-﻿namespace FA.JustBlog.AutoMapperConfig
+﻿namespace FA.JustBlog.ExternalConfig
 {
     public class AutoMapperStartupTask
     {
