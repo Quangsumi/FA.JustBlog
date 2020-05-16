@@ -9,7 +9,8 @@ namespace FA.JustBlog
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Content/AdminLTE/bower_components/jquery/dist/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -20,10 +21,16 @@ namespace FA.JustBlog
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Content/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js",
+                      "~/Content/AdminLTE/dist/js/adminlte.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css",
+                      "~/Content/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css",
+                      "~/Content/AdminLTE/bower_components/Ionicons/css/ionicons.min.css",
+                      "~/Content/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css",
+                      "~/Content/AdminLTE/dist/css/AdminLTE.min.css",
+                      "~/Content/AdminLTE/dist/css/skins/_all-skins.min.css",
                       "~/Content/site.css"));
         }
     }
