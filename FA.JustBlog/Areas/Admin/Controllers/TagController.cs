@@ -1,20 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FA.JustBlog.Core.Models;
+using FA.JustBlog.Core.Services;
+using FA.JustBlog.ExternalConfig;
+using FA.JustBlog.ViewModels;
+using PagedList;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FA.JustBlog.Areas.Admin.Controllers
 {
     public class TagController : Controller
     {
-        // GET: Admin/Tag
-        public ActionResult Index()
+        ITagService _tagService;
+
+        public TagController(ITagService tagService)
         {
-            return View();
+            _tagService = tagService;
         }
 
-        // GET: Admin/Tag/Details/5
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.SlugSortParm = sortOrder == "slug" ? "slug_desc" : "slug";
+            ViewBag.CountSortParm = sortOrder == "count" ? "count_desc" : "count";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var tags = _tagService.GetAll();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tags = _tagService.GetMany(c => c.Name.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    tags = tags.OrderByDescending(c => c.Name);
+                    break;
+                case "slug":
+                    tags = tags.OrderBy(c => c.UrlSlug);
+                    break;
+                case "slug_desc":
+                    tags = tags.OrderByDescending(c => c.UrlSlug);
+                    break;
+                case "count":
+                    tags = tags.OrderBy(c => c.Count);
+                    break;
+                case "count_desc":
+                    tags = tags.OrderByDescending(c => c.Count);
+                    break;
+                default:
+                    tags = tags.OrderBy(c => c.Name);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            return View(tags.ToPagedList(pageNumber, pageSize));
+        }
+
         public ActionResult Details(int id)
         {
             return View();
@@ -26,62 +82,63 @@ namespace FA.JustBlog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TagViewModel tagViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                
+                Tag tag = new Tag();
+
+                AutoMapperConfiguration.Mapper.Map(tagViewModel, tag);
+
+                _tagService.Add(tag);
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View();
         }
 
-        // GET: Admin/Tag/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Tag tag = _tagService.Find(id);
+
+            TagViewModel tagViewModel = new TagViewModel();
+
+            AutoMapperConfiguration.Mapper.Map(tag, tagViewModel);
+
+            return View(tagViewModel);
         }
 
-        // POST: Admin/Tag/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, TagViewModel tagViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                Tag editingTag = _tagService.Find(id);
+                editingTag.Name = tagViewModel.Name;
+                editingTag.UrlSlug = tagViewModel.UrlSlug;
+                editingTag.Description = tagViewModel.Description;
+
+                _tagService.Update(editingTag);
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View();
         }
 
-        // GET: Admin/Tag/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
+            Tag deletingTag = _tagService.Find(id);
 
-        // POST: Admin/Tag/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
+            if (deletingTag != null)
             {
-                // TODO: Add delete logic here
+                _tagService.Delete(deletingTag);
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View();
         }
     }
 }

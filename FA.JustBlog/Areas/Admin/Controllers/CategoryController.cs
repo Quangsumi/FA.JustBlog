@@ -1,13 +1,11 @@
-﻿using FA.JustBlog.ExternalConfig;
-using FA.JustBlog.Core.Models;
+﻿using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Services;
+using FA.JustBlog.ExternalConfig;
 using FA.JustBlog.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using PagedList;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace FA.JustBlog.Areas.Admin.Controllers
 {
@@ -74,7 +72,6 @@ namespace FA.JustBlog.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(CategoryViewModel categoryViewModel)
         {
-
             if (ModelState.IsValid)
             {
                 Category category = new Category();

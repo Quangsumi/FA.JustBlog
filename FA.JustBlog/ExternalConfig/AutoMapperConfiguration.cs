@@ -16,10 +16,14 @@ namespace FA.JustBlog.ExternalConfig
             {
                 // Mapping domain entities to view entities
                 cfg.CreateMap<Post, PostViewModel>();
+                cfg.CreateMap<Tag, TagViewModel>();
+                cfg.CreateMap<Comment, CommentViewModel>();
                 cfg.CreateMap<Category, CategoryViewModel>();
 
                 // Mapping view entities to domain entities
                 cfg.CreateMap<PostViewModel, Post>();
+                cfg.CreateMap<TagViewModel, Tag>();
+                cfg.CreateMap<CommentViewModel, Comment>();
                 cfg.CreateMap<CategoryViewModel, Category>();
             });
 

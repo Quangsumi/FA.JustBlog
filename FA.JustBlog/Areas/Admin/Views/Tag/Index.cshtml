@@ -1,0 +1,85 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<FA.JustBlog.Core.Models.Tag>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Tags";
+}
+
+<div class="col-xs-12">
+    <h2>Categories</h2>
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                </div>
+
+                <div class="col-sm-6">
+                    @using (Html.BeginForm("Index", "Tag", FormMethod.Get))
+                    {
+                        <p class="pull-right">
+                            Find by name:
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        </p>
+                    }
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-striped dataTable">
+                        <tr>
+                            <th>
+                                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+                            </th>
+                            <th>
+                                @Html.ActionLink("Url Slug", "Index", new { sortOrder = ViewBag.SlugSortParm })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Count", "Index", new { sortOrder = ViewBag.CountSortParm })
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UrlSlug)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Count)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure?');" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                </div>
+
+                <div class="col-sm-7">
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                              new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

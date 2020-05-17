@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FA.JustBlog.ViewModels
@@ -11,7 +10,7 @@ namespace FA.JustBlog.ViewModels
 
         [Display(Name = "Tag Name")]
         [Required(ErrorMessage = "The {0} is required.")]
-        [StringLength(255, ErrorMessage = "The {} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
+        [StringLength(255, ErrorMessage = "The {0} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
         public string Name { get; set; }
 
         [Display(Name = "Url Slug")]
