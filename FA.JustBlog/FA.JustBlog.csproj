@@ -194,6 +194,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagController.cs" />
     <Compile Include="ExternalConfig\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -207,8 +209,10 @@
     </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\CommentPostViewModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\PostCategoryViewModel.cs" />
     <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1698,6 +1702,12 @@
     <Content Include="Areas\Admin\Views\Tag\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

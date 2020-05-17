@@ -3,12 +3,9 @@
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-
 @{
     ViewBag.Title = "Categories";
 }
-
-
 
 <div class="col-xs-12">
     <h2>Categories</h2>
@@ -24,14 +21,12 @@
                 <div class="col-sm-6">
                     @using (Html.BeginForm("Index", "Category", FormMethod.Get))
                     {
-                    <p class="pull-right">
-                        Find by name:
-                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                    </p>
+                        <p class="pull-right">
+                            Find by name:
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        </p>
                     }
                 </div>
-
-
             </div>
             <div class="row">
                 <div class="col-sm-12">

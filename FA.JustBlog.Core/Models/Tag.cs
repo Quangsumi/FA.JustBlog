@@ -11,7 +11,7 @@ namespace FA.JustBlog.Core.Models
 
         [Display(Name = "Tag Name")]
         [Required(ErrorMessage = "The {0} is required.")]
-        [StringLength(255, ErrorMessage = "The {} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
+        [StringLength(255, ErrorMessage = "The {0} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
         public string Name { get; set; }
 
         [Display(Name = "Url Slug")]
@@ -26,6 +26,6 @@ namespace FA.JustBlog.Core.Models
         [DefaultValue(0)]
         public int Count { get; set; }
 
-        public virtual IList<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

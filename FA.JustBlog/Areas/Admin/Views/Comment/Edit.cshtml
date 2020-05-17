@@ -1,0 +1,68 @@
+﻿@model FA.JustBlog.ViewModels.CommentPostViewModel
+
+@{
+    ViewBag.Title = "Edit Comment";
+}
+
+<div class="col-sm-12">
+    <h2>Comments</h2>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Edit Comment</h3>
+        </div>
+        @using (Html.BeginForm("Edit", "Comment", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="box-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Comment.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment.Name, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Comment.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comment.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment.Email, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Comment.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comment.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PostId, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.PostId, new SelectList(Model.Posts, "Id", "Title", Model.Comment?.PostId))
+                        @Html.ValidationMessageFor(model => model.PostId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment.CommentHeader, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Comment.CommentHeader, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comment.CommentHeader, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment.CommentText, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Comment.CommentText, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Comment.CommentText, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-footer">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Save" class="btn btn-info pull-right" />
+            </div>
+        }
+    </div>
+</div>

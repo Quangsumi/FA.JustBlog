@@ -20,6 +20,6 @@ namespace FA.JustBlog.Core.Models
         [StringLength(1024, ErrorMessage = "The {0} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
         public string Description { get; set; }
         
-        public virtual IList<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

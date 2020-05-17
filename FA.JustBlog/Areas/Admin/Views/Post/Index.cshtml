@@ -1,14 +1,14 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<FA.JustBlog.Core.Models.Tag>
+@model PagedList.IPagedList<FA.JustBlog.Core.Models.Post>
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Tags";
+    ViewBag.Title = "Posts";
 }
 
 <div class="col-xs-12">
-    <h2>Tags</h2>
+    <h2>Posts</h2>
     <div class="box">
         <div class="box-body">
             <div class="row">
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    @using (Html.BeginForm("Index", "Tag", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "Post", FormMethod.Get))
                     {
                         <p class="pull-right">
                             Find by name:
@@ -27,22 +27,26 @@
                         </p>
                     }
                 </div>
-
-
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <table class="table table-bordered table-striped dataTable">
                         <tr>
-                            <th>
-                                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                            <th style="width: 300px">
+                                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm, currentFilter = ViewBag.CurrentFilter })
 
                             </th>
                             <th>
-                                @Html.ActionLink("Url Slug", "Index", new { sortOrder = ViewBag.SlugSortParm })
+                                @Html.ActionLink("Published", "Index", new { sortOrder = ViewBag.PublishedSortParm })
                             </th>
                             <th>
-                                @Html.ActionLink("Count", "Index", new { sortOrder = ViewBag.CountSortParm })
+                                @Html.ActionLink("Posted On", "Index", new { sortOrder = ViewBag.PostedOnSortParm })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Modified", "Index", new { sortOrder = ViewBag.ModifiedSortParm })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm })
                             </th>
                             <th></th>
                         </tr>
@@ -51,13 +55,19 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
+                                    @Html.DisplayFor(modelItem => item.Title)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.UrlSlug)
+                                    @Html.DisplayFor(modelItem => item.Published)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Count)
+                                    @Html.DisplayFor(modelItem => item.PostedOn)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Modified)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Category.Name)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -83,3 +93,5 @@
         </div>
     </div>
 </div>
+
+

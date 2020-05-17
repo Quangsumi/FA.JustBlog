@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FA.JustBlog.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace FA.JustBlog.ViewModels
         [DataType(DataType.EmailAddress, ErrorMessage = "The {0} format is not correct!")]
         public string Email { get; set; }
 
-        public int PostId { get; set; }
+        [Required(ErrorMessage = "The {0} is required")]
+        public Post Post { get; set; }
 
         [Display(Name = "Comment Header")]
         [Required(ErrorMessage = "The {0} is required")]

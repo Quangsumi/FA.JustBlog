@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FA.JustBlog.Core.Models;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -39,24 +39,25 @@ namespace FA.JustBlog.ViewModels
         [DataType(DataType.Time, ErrorMessage = "The {0} format is not correct")]
         public DateTime Modified { get; set; }
 
-        public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
 
         [DefaultValue(1)]
-        public int ViewCount { get; set; } = 1;
+        public int ViewCount { get; set; }
 
         [DefaultValue(1)]
-        public int RateCount { get; set; } = 1;
+        public int RateCount { get; set; }
 
         [DefaultValue(1)]
-        public int TotalRate { get; set; } = 1;
+        public int TotalRate { get; set; }
 
         [NotMapped]
-        //public decimal Rate { get => TotalRate / RateCount; }
-        public decimal Rate { get => TotalRate / 1; }
+        public decimal Rate { get => TotalRate / (RateCount == 0 ? 1 : RateCount); }
 
         [Display(Name = "Post Content")]
-        [Required(ErrorMessage = "The {} is required")]
-        [StringLength(5120, ErrorMessage = "The {} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
+        [Required(ErrorMessage = "The {0} is required")]
+        [StringLength(5120, ErrorMessage = "The {0} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
         public string PostContent { get; set; }
     }
 }

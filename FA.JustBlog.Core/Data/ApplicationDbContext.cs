@@ -1,5 +1,6 @@
 ﻿using FA.JustBlog.Core.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace FA.JustBlog.Core.Data
 {

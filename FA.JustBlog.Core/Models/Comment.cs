@@ -22,6 +22,8 @@ namespace FA.JustBlog.Core.Models
 
         public int PostId { get; set; }
 
+        public virtual Post Post { get; set; }
+
         [Display(Name = "Comment Header")]
         [Required(ErrorMessage = "The {0} is required")]
         [StringLength(255, ErrorMessage = "The {0} must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
@@ -32,7 +34,7 @@ namespace FA.JustBlog.Core.Models
         [StringLength(1024, ErrorMessage = "The {0} text must be greater than {2} characters and less than {1} characters", MinimumLength = 3)]
         public string CommentText { get; set; }
 
-        [DataType(DataType.Time)]
+        [DataType(DataType.DateTime)]
         public DateTime CommentTime { get; set; }
     }
 }

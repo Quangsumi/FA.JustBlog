@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class v1 : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -85,10 +85,10 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Posts", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.PostTag", "TagId", "dbo.Tags");
             DropForeignKey("dbo.PostTag", "PostId", "dbo.Posts");
             DropForeignKey("dbo.Comments", "PostId", "dbo.Posts");
+            DropForeignKey("dbo.Posts", "CategoryId", "dbo.Categories");
             DropIndex("dbo.PostTag", new[] { "TagId" });
             DropIndex("dbo.PostTag", new[] { "PostId" });
             DropIndex("dbo.Comments", new[] { "PostId" });

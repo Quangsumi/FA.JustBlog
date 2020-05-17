@@ -1,0 +1,86 @@
+﻿@model FA.JustBlog.ViewModels.PostCategoryViewModel
+
+@{
+    ViewBag.Title = "Edit Post";
+}
+
+<div class="col-sm-12">
+    <h2>Posts</h2>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Edit Post</h3>
+        </div>
+        @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="box-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Post.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.ShortDescription, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Post.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Post.ShortDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.Meta, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Post.Meta, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Post.Meta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.UrlSlug, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Post.UrlSlug, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Post.UrlSlug, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.Published, htmlAttributes: new { @class = "control-label col-sm-2" })
+                    <div class="col-md-10">
+                        <label style="padding-top: 7px;">
+                            @Html.EditorFor(model => model.Post.Published, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Post.Published, "", new { @class = "text-danger" })
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.Category, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name", Model.Post.CategoryId), "Select Category")
+                        @Html.ValidationMessageFor(model => model.Post.Category.Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Post.PostContent, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Post.PostContent, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Post.PostContent, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="box-footer">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Save" class="btn btn-info pull-right" />
+            </div>
+        }
+    </div>
+</div>

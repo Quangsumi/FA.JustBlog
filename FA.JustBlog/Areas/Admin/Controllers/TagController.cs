@@ -71,11 +71,6 @@ namespace FA.JustBlog.Areas.Admin.Controllers
             return View(tags.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         public ActionResult Create()
         {
             return View();

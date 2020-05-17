@@ -1,14 +1,14 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<FA.JustBlog.Core.Models.Tag>
+@model PagedList.IPagedList<FA.JustBlog.Core.Models.Comment>
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Tags";
+    ViewBag.Title = "Comments";
 }
 
 <div class="col-xs-12">
-    <h2>Tags</h2>
+    <h2>Comments</h2>
     <div class="box">
         <div class="box-body">
             <div class="row">
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    @using (Html.BeginForm("Index", "Tag", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "Comment", FormMethod.Get))
                     {
                         <p class="pull-right">
                             Find by name:
@@ -39,10 +39,16 @@
 
                             </th>
                             <th>
-                                @Html.ActionLink("Url Slug", "Index", new { sortOrder = ViewBag.SlugSortParm })
+                                @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.EmailSortParm })
+                            </th>
+                            <th style = "width: 350px">
+                                @Html.ActionLink("Post Title", "Index", new { sortOrder = ViewBag.PostTitleSortParm })
                             </th>
                             <th>
-                                @Html.ActionLink("Count", "Index", new { sortOrder = ViewBag.CountSortParm })
+                                Comment Text
+                            </th>
+                            <th>
+                                @Html.ActionLink("Time", "Index", new { sortOrder = ViewBag.TimeSortParm })
                             </th>
                             <th></th>
                         </tr>
@@ -54,10 +60,16 @@
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.UrlSlug)
+                                    @Html.DisplayFor(modelItem => item.Email)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Count)
+                                    @Html.DisplayFor(modelItem => item.Post.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CommentText)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CommentTime.Date)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -83,3 +95,5 @@
         </div>
     </div>
 </div>
+
+

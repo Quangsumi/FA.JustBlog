@@ -10,7 +10,7 @@ namespace FA.JustBlog.Core.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        public JustBlogContext() : base("JustBlog") { }
+        public JustBlogContext() : base("JustBlogContext") { }
 
         static JustBlogContext()
         {
