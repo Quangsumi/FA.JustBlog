@@ -60,9 +60,9 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Post.Category, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                    @Html.LabelFor(model => model.Post.CategoryId, htmlAttributes: new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-10">
-                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Post")
+                        @Html.DropDownListFor(m => m.Post.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Post")
                         @Html.ValidationMessageFor(model => model.Post.Category.Id, "", new { @class = "text-danger" })
                     </div>
                 </div>

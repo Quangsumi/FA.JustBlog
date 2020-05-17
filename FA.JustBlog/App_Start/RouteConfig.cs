@@ -14,9 +14,17 @@ namespace FA.JustBlog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
+                name: "Admin/Post",
+                url: "Admin/{controller}/{action}/{id}",
+                defaults: new { controller = "Post", action = "Index", id = UrlParameter.Optional },
+                new[] { "FA.JustBlog.Areas.Admin.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Post",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Post", action = "Index", id = UrlParameter.Optional },
+                new[] { "FA.JustBlog.Controllers" }
             );
         }
     }
