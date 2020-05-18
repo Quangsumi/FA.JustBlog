@@ -1,7 +1,6 @@
 ﻿using FA.JustBlog.Core.Models;
 using FA.JustBlog.Core.Repositories.Implement;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -61,6 +60,11 @@ namespace FA.JustBlog.Core.Services
         public Category Find(int id)
         {
             return _unitOfWork.CategoryRepository.GetById(id);
+        }
+
+        public Category Find(string urlslug)
+        {
+            return _unitOfWork.CategoryRepository.DbSet.SingleOrDefault(c => c.UrlSlug.ToLower() == urlslug.ToLower());
         }
 
         public IQueryable<Category> GetAll()

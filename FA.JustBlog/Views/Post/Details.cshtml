@@ -14,7 +14,7 @@
                     <h1>@Model.Title</h1>
                     <h2 class="subheading">@Model.ShortDescription</h2>
                     <span class="meta">
-                        Posted @Model.PostedOn
+                        Posted @Model.PostedOn.ToString("dd/MM/yyyy")
                         with rate @Model.Rate
                         by @Model.ViewCount
                     </span>
@@ -28,8 +28,17 @@
 <article>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-sm-9 mx-auto">
                 @Model.PostContent
+            </div>
+            <div class="col-sm-3 mx-auto">
+                @Html.Action("AboutCard", "Home")
+                <br />
+                @Html.Action("MostViewedPosts", "Post")
+                <br />
+                @Html.Action("LastestPosts", "Post")
+                <br />
+                @Html.Action("PopularTags", "Tag")
             </div>
         </div>
     </div>

@@ -7,5 +7,6 @@ namespace FA.JustBlog.Core.Services
     {
         bool Delete(int tagId);
         Tag GetTagByUrlSlug(string urlSlug);
+        IEnumerable<Tag> GetPopularTags(int size);
     }
 }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FA.JustBlog.ViewModels.PostViewModel>
+﻿@using FA.JustBlog.Core.Models
+@model IEnumerable<FA.JustBlog.Core.Models.Post>
 
 @{
     ViewBag.Title = "Index";
@@ -11,8 +12,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <h1>@((ViewBag.Category as Category).Name)</h1>
+                    <span class="subheading">@((ViewBag.Category as Category).Description)</span>
                 </div>
             </div>
         </div>

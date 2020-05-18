@@ -83,6 +83,11 @@ namespace FA.JustBlog.Core.Services
             return rs;
         }
 
+        public IEnumerable<Tag> GetPopularTags(int size)
+        {
+            return GetAll().OrderByDescending(t => t.Count).Take(size);
+        }
+
         public int Update(Tag entity)
         {
             Tag rs = _unitOfWork.TagRepository.GetById(entity.Id);

@@ -197,13 +197,15 @@
     <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="ExternalConfig\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="ExternalConfig\AutoMapperStartupTask.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3254,10 +3256,10 @@
     <Content Include="Content\AdminLTE\bower_components\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\AdminLTE\dist\css\adminlte.css.map" />
     <Content Include="Content\AdminLTE\dist\css\adminlte.min.css.map" />
-    <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_HeaderBar.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_SideBar.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialFooter.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialHeaderBar.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialSideBar.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\Edit.cshtml" />
@@ -3349,7 +3351,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -3370,8 +3371,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Shared\_PartialFooter.cshtml" />
+    <Content Include="Views\Shared\_PartialNavBar.cshtml" />
+    <Content Include="Views\Shared\_PartialHeader.cshtml" />
+    <Content Include="Views\Home\_PartialAboutCard.cshtml" />
+    <Content Include="Views\Post\_PartialListPosts.cshtml" />
+    <Content Include="Views\Tag\_PartialPopularTags.cshtml" />
+    <Content Include="Views\Category\_PartialListCategories.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Tag\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

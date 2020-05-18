@@ -61,10 +61,10 @@
                                     @Html.DisplayFor(modelItem => item.Published)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PostedOn)
+                                    @item.PostedOn.ToString("dd/MM/yyyy hh:mm:ss tt")
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Modified)
+                                    @item.Modified.ToString("dd/MM/yyyy hh:mm:ss tt")
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Category.Name)

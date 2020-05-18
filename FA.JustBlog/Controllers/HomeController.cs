@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FA.JustBlog.Core.Models;
+using FA.JustBlog.Core.Services;
+using FA.JustBlog.ExternalConfig;
+using FA.JustBlog.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +12,27 @@ namespace FA.JustBlog.Controllers
 {
     public class HomeController : Controller
     {
+        IPostService _postService;
+
+        public HomeController(IPostService postService)
+        {
+            _postService = postService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            List<Post> posts = _postService.GetLatestPost(10).ToList();
+            List<PostViewModel> postViewModels = new List<PostViewModel>();
+
+            AutoMapperConfiguration.Mapper.Map(posts, postViewModels);
+
+            return View(postViewModels);
         }
 
-        public ActionResult About()
+        [ChildActionOnly]
+        public ActionResult AboutCard()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return PartialView("_PartialAboutCard");
         }
     }
 }

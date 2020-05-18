@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FA.JustBlog.Core.Models.Post>
+
+@if (ViewBag.Flag as string == "MostViewedPosts")
+{
+    <h5>Most view posts</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Posts</th>
+                <th>Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr style="font-size: 18px;">
+                    <td><a href="~/Post/@post.PostedOn.ToString("yyyy")/@post.PostedOn.ToString("MM")/@post.UrlSlug">@post.Title</a></td>
+                    <td>@post.ViewCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else if (ViewBag.Flag as string == "LastestPosts")
+{
+    <h5>Lastest posts</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Posts</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr style="font-size: 18px;">
+                    <td><a href="~/Post/@post.PostedOn.ToString("yyyy")/@post.PostedOn.ToString("MM")/@post.UrlSlug">@post.Title</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

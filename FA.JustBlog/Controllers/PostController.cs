@@ -2,10 +2,7 @@
 using FA.JustBlog.Core.Services;
 using FA.JustBlog.ExternalConfig;
 using FA.JustBlog.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FA.JustBlog.Controllers
@@ -21,22 +18,39 @@ namespace FA.JustBlog.Controllers
 
         public ActionResult Index()
         {
-            List<Post> posts = _postService.GetAll().ToList();
-            List<PostViewModel> postViewModels = new List<PostViewModel>();
-
-            AutoMapperConfiguration.Mapper.Map(posts, postViewModels);
-
-            return View(postViewModels);
+            return View();
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int year, int month, string urlslug)
         {
-            Post post = _postService.Find(id);
+            Post post = _postService.GetPostsByYearMonthUrlSlug(year, month, urlslug);
+
+            if(post == null)
+                return HttpNotFound();
+
             PostViewModel postViewModel = new PostViewModel();
 
             AutoMapperConfiguration.Mapper.Map(post, postViewModel);
 
             return View(postViewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult MostViewedPosts()
+        {
+            IEnumerable<Post> posts =_postService.GetMostViewedPost(5);
+            ViewBag.Flag = "MostViewedPosts";
+
+            return PartialView("_PartialListPosts", posts);
+        }
+
+        [ChildActionOnly]
+        public ActionResult LastestPosts()
+        {
+            IEnumerable<Post> posts = _postService.GetLatestPost(5);
+            ViewBag.Flag = "LastestPosts";
+
+            return PartialView("_PartialListPosts", posts);
         }
     }
 }

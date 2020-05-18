@@ -112,12 +112,12 @@ namespace FA.JustBlog.Core.Services
 
         public IEnumerable<Post> GetHighestPosts(int size)
         {
-            return _unitOfWork.PostRepository.DbSet.OrderByDescending(p => p.Rate).Take(size).ToList();
+            return GetAll().OrderByDescending(p => p.Rate).Take(size).ToList();
         }
 
         public IEnumerable<Post> GetLatestPost(int size)
         {
-            return _unitOfWork.PostRepository.DbSet.OrderByDescending(p => p.Published).Take(size).ToList();
+            return GetAll().OrderByDescending(p => p.PostedOn).Take(size).ToList();
         }
 
         public IQueryable<Post> GetMany(Expression<Func<Post, bool>> predicate)
@@ -130,9 +130,19 @@ namespace FA.JustBlog.Core.Services
             return _unitOfWork.PostRepository.DbSet.OrderByDescending(p => p.ViewCount).Take(size).ToList();
         }
 
-        public IEnumerable<Post> GetPostsByCategory(string category)
+        public IEnumerable<Post> GetPostsByCategory(string urlSlug)
         {
-            Category rs = _unitOfWork.CategoryRepository.Get(c => c.Name.ToLower() == category.ToLower());
+            Category rs = _unitOfWork.CategoryRepository.Get(c => c.UrlSlug.ToLower() == urlSlug.ToLower());
+
+            if (rs == null)
+                throw new Exception("Could not find Category Id");
+
+            return _unitOfWork.PostRepository.DbSet.Where(p => p.CategoryId == rs.Id).ToList();
+        }
+
+        public IEnumerable<Post> GetPostsByCategoryId(int id)
+        {
+            Category rs = _unitOfWork.CategoryRepository.Get(c => c.Id == id);
 
             if (rs == null)
                 throw new Exception("Could not find Category Id");
@@ -145,7 +155,12 @@ namespace FA.JustBlog.Core.Services
             return _unitOfWork.PostRepository.GetMany(p => p.PostedOn.Month == monthYear.Month).ToList();
         }
 
-        public IEnumerable<Post> GetPostsByTag(string tag)
+        public Post GetPostsByYearMonthUrlSlug(int year, int month, string urlslug)
+        {
+            return _unitOfWork.PostRepository.DbSet.Where(p => p.PostedOn.Year == year && p.PostedOn.Month == month && p.UrlSlug.ToLower() == urlslug.ToLower()).FirstOrDefault();
+        }
+
+        public IEnumerable<Post> GetPostsByUrlSlugTag(string urlSlug)
         {
             List<Post> allTagPosts = _unitOfWork.PostRepository.GetAll().ToList();
 
@@ -155,7 +170,28 @@ namespace FA.JustBlog.Core.Services
             {
                 foreach (Tag t in p.Tags)
                 {
-                    if (t.Name == tag)
+                    if (t.UrlSlug.ToLower() == urlSlug.ToLower())
+                    {
+                        posts.Add(p);
+                        break;
+                    }
+                }
+            }
+
+            return posts;
+        }
+
+        public IEnumerable<Post> GetPostsByTagById(int id)
+        {
+            List<Post> allTagPosts = _unitOfWork.PostRepository.GetAll().ToList();
+
+            List<Post> posts = new List<Post>();
+
+            foreach (Post p in allTagPosts)
+            {
+                foreach (Tag t in p.Tags)
+                {
+                    if (t.Id == id)
                     {
                         posts.Add(p);
                         break;

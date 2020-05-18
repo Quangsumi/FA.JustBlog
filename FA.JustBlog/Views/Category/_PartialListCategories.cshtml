@@ -1,0 +1,13 @@
+﻿@model IEnumerable<FA.JustBlog.Core.Models.Category>
+
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    @foreach (var category in Model)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="~/Category/@category.UrlSlug">@category.Name</a>
+        </li>
+    }
+</ul>

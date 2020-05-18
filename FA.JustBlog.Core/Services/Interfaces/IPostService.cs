@@ -13,9 +13,12 @@ namespace FA.JustBlog.Core.Services
         IEnumerable<Post> GetHighestPosts(int size);
         IEnumerable<Post> GetLatestPost(int size);
         IEnumerable<Post> GetMostViewedPost(int size);
-        IEnumerable<Post> GetPostsByCategory(string category);
+        IEnumerable<Post> GetPostsByCategory(string urlSlug);
+        IEnumerable<Post> GetPostsByCategoryId(int id);
         IEnumerable<Post> GetPostsByMonth(DateTime monthYear);
-        IEnumerable<Post> GetPostsByTag(string tag);
+        Post GetPostsByYearMonthUrlSlug(int year, int month, string urlslug);
+        IEnumerable<Post> GetPostsByUrlSlugTag(string urlSlug);
+        IEnumerable<Post> GetPostsByTagById(int id);
         IEnumerable<Post> GetPublisedPosts();
         IEnumerable<Post> GetUnpublisedPosts();
     }
